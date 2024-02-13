@@ -1,0 +1,75 @@
+//
+// Copyright Caiden Sanders - All Rights Reserved
+//
+// Unauthorized copying of this file, via any medium is strictly prohibited.
+// Proprietary and confidential.
+//
+// Written by Caiden Sanders <work.caidensanders@gmail.com>, February 12, 2024.
+//
+
+// Merge Sort Pseudo Code
+
+// Defines the merge_sort function that sorts an array.
+merge_sort(arr) {
+    // Base condition: if the array size is less than 2, it's already sorted.
+    if (arr.length < 2)
+        return arr // Return the array as is.
+
+    // Calculates the middle index of the array to divide it into two halves.
+    middle = arr.length / 2
+
+    // Splits the array into a left and a right half from the middle. 
+    left = arr[0, middle]
+    right = arr[middle, arr.length]
+
+    // Recursively sorts the left and right halves.
+    merge_sort(left)
+    merge_sort(right)
+
+    // Merges the sorted left and right halves.
+    merge(left, right, arr)
+}
+
+// Defines the merge function that combines two arrays into a single sorted array.
+merge(left, right, arr) {
+    // Initializes the left, right, and array indices.
+    left_index = 0
+    right_index = 0
+    arr_index = 0
+
+    // While there are elements in both left and right arrays.
+    while (left_index < left.length && right_index < right.length) {
+        // If the left element is less than the right element.
+        if (left[left_index] < right[right_index]) {
+            // Assign the left element to the array.
+            arr[arr_index] = left[left_index]
+            left_index++
+        } else {
+            // Assign the right element to the array.
+            arr[arr_index] = right[right_index]
+            right_index++
+        }
+
+        // Move to the next index in the array.
+        arr_index++
+    }
+
+    // While there are elements in the left array.
+    while (left_index < left.length) {
+        // Assign the left element to the array.
+        arr[arr_index] = left[left_index]
+        left_index++
+        arr_index++
+    }
+
+    // While there are elements in the right array.
+    while (right_index < right.length) {
+        // Assign the right element to the array.
+        arr[arr_index] = right[right_index]
+        right_index++
+        arr_index++
+    }
+
+    // Return the merged array.
+    return arr
+}

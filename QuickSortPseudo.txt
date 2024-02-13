@@ -1,0 +1,51 @@
+//
+// Copyright Caiden Sanders - All Rights Reserved
+//
+// Unauthorized copying of this file, via any medium is strictly prohibited.
+// Proprietary and confidential.
+//
+// Written by Caiden Sanders <work.caidensanders@gmail.com>, February 12, 2024.
+//
+
+// Quick Sort Algorithm Pseudo Code
+
+// Defines the quick_sort function to sort an array.
+quick_sort(arr, low, high) {
+    // Base condition: if the subarray has one or no element, it's already sorted.
+    if (low < high) {
+        // Partitions the array and finds the pivot position where elements to the
+        // left are smaller and to the right are larger.
+        pivot = partition(arr, low, high)
+
+        // Recursively sorts the subarray before the pivot.
+        quick_sort(arr, low, pivot - 1)
+
+        // Recursively sorts the subarray after the pivot.
+        quick_sort(arr, pivot + 1, high)
+    }
+}
+
+// Defines the partition function to find the pivot position.
+partition(arr, low, high) {
+    // Chooses the last element as the pivot.
+    pivot = arr[high]
+    i = low - 1 // Position of the smaller element.
+
+    // Iterates through the array, comparing each element with the pivot.
+    for (j = low; j < high; j++) {
+        // If the current element is less than or equal to the pivot.
+        if (arr[j] <= pivot) {
+            // Increments the position of the smaller element.
+            i++
+
+            // Swaps the current element with the element at position i.
+            swap(arr[i], arr[j])
+        }
+    }
+
+    // Places the pivot after the last smaller element.
+    swap(arr[i + 1], arr[high])
+
+    // Returns the position fo the pivot.
+    return i + 1
+}
